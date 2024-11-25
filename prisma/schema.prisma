@@ -1,0 +1,262 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id            String      @id @default(cuid())
+  email         String      @unique
+  password      String
+  firstName     String?
+  lastName      String?
+  phoneNumber   String?
+  emailVerified DateTime?
+  subscription  Subscription?
+  clinics       Clinic[]
+  userRoles     UserRole[]
+  createdAt     DateTime    @default(now())
+  updatedAt     DateTime    @updatedAt
+  // Auth relations
+  accounts      Account[]
+  sessions      Session[]
+  verificationTokens VerificationToken[]
+  resetTokens   ResetToken[]
+
+  @@index([email])
+}
+
+model Clinic {
+  id          String   @id @default(cuid())
+  name        String
+  address     String
+  phoneNumber String
+  ownerId     String
+  owner       User     @relation(fields: [ownerId], references: [id])
+  patients    Patient[]
+  clients     Client[]
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+}
+
+model Role {
+  id          String      @id @default(cuid())
+  name        String      @unique
+  description String?
+  permissions Permission[]
+  userRoles   UserRole[]
+  createdAt   DateTime    @default(now())
+  updatedAt   DateTime    @updatedAt
+}
+
+model Permission {
+  id          String   @id @default(cuid())
+  roleId      String
+  role        Role     @relation(fields: [roleId], references: [id])
+  resource    String
+  action      String
+  conditions  Json?
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+}
+
+model UserRole {
+  id        String   @id @default(cuid())
+  userId    String
+  user      User     @relation(fields: [userId], references: [id])
+  roleId    String
+  role      Role     @relation(fields: [roleId], references: [id])
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@unique([userId, roleId])
+}
+
+model Subscription {
+  id              String            @id @default(cuid())
+  userId          String            @unique
+  user            User              @relation(fields: [userId], references: [id])
+  planId          String
+  plan            SubscriptionPlan  @relation(fields: [planId], references: [id])
+  status          SubscriptionStatus
+  currentPeriodStart DateTime
+  currentPeriodEnd   DateTime
+  cancelAtPeriodEnd  Boolean        @default(false)
+  stripeCustomerId   String?
+  stripeSubscriptionId String?
+  createdAt       DateTime          @default(now())
+  updatedAt       DateTime          @updatedAt
+}
+
+model SubscriptionPlan {
+  id          String        @id @default(cuid())
+  name        String        @unique
+  description String?
+  price       Float
+  currency    String        @default("USD")
+  interval    BillingInterval
+  maxClinics  Int          @default(1)
+  features    PlanFeature[]
+  isActive    Boolean       @default(true)
+  stripePriceId String?
+  subscriptions Subscription[]
+  createdAt   DateTime      @default(now())
+  updatedAt   DateTime      @updatedAt
+}
+
+model PlanFeature {
+  id          String    @id @default(cuid())
+  name        String    @unique
+  description String?
+  plans       SubscriptionPlan[]
+  createdAt   DateTime  @default(now())
+  updatedAt   DateTime  @updatedAt
+}
+
+model Patient {
+  id          String    @id @default(cuid())
+  name        String
+  species     String
+  breed       String?
+  birthDate   DateTime?
+  gender      Gender
+  clinicId    String
+  clinic      Clinic    @relation(fields: [clinicId], references: [id])
+  ownerId     String
+  owner       Client    @relation(fields: [ownerId], references: [id])
+  records     MedicalRecord[]
+  createdAt   DateTime  @default(now())
+  updatedAt   DateTime  @updatedAt
+}
+
+model Client {
+  id          String    @id @default(cuid())
+  email       String
+  firstName   String
+  lastName    String
+  phoneNumber String?
+  address     String?
+  clinicId    String
+  clinic      Clinic    @relation(fields: [clinicId], references: [id])
+  patients    Patient[]
+  createdAt   DateTime  @default(now())
+  updatedAt   DateTime  @updatedAt
+
+  @@unique([email, clinicId])
+}
+
+model MedicalRecord {
+  id          String    @id @default(cuid())
+  patientId   String
+  patient     Patient   @relation(fields: [patientId], references: [id])
+  type        RecordType
+  date        DateTime
+  notes       String
+  diagnosis   String?
+  treatment   String?
+  medications Json?
+  attachments Attachment[]
+  createdAt   DateTime  @default(now())
+  updatedAt   DateTime  @updatedAt
+}
+
+model Attachment {
+  id              String        @id @default(cuid())
+  medicalRecordId String
+  medicalRecord   MedicalRecord @relation(fields: [medicalRecordId], references: [id])
+  fileName        String
+  fileType        String
+  fileSize        Int
+  url            String
+  createdAt       DateTime      @default(now())
+  updatedAt       DateTime      @updatedAt
+}
+
+model Account {
+  id                String  @id @default(cuid())
+  userId            String
+  type              String
+  provider          String
+  providerAccountId String
+  refresh_token     String? @db.Text
+  access_token      String? @db.Text
+  expires_at        Int?
+  token_type        String?
+  scope             String?
+  id_token          String? @db.Text
+  session_state     String?
+
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@unique([provider, providerAccountId])
+  @@index([userId])
+}
+
+model Session {
+  id           String   @id @default(cuid())
+  sessionToken String   @unique
+  userId       String
+  expires      DateTime
+  user         User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@index([userId])
+}
+
+model VerificationToken {
+  id        String   @id @default(cuid())
+  token     String   @unique
+  userId    String
+  expires   DateTime
+  user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  createdAt DateTime @default(now())
+
+  @@index([token])
+  @@index([userId])
+}
+
+model ResetToken {
+  id        String   @id @default(cuid())
+  token     String   @unique
+  userId    String
+  expires   DateTime
+  user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  createdAt DateTime @default(now())
+
+  @@index([token])
+  @@index([userId])
+}
+
+enum SubscriptionStatus {
+  ACTIVE
+  PAST_DUE
+  CANCELED
+  UNPAID
+  TRIALING
+}
+
+enum BillingInterval {
+  MONTHLY
+  YEARLY
+}
+
+enum Gender {
+  MALE
+  FEMALE
+  UNKNOWN
+}
+
+enum RecordType {
+  EXAMINATION
+  VACCINATION
+  SURGERY
+  PRESCRIPTION
+  LAB_RESULT
+  IMAGING
+  OTHER
+}
