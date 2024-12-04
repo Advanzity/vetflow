@@ -1,44 +1,46 @@
 {
-  "name": "ccsss",
-  "version": "0.1.0",
-  "private": true,
-  "scripts": {
-    "dev": "next dev --turbopack",
-    "build": "next build",
-    "start": "next start",
-    "lint": "next lint",
-    "db:push": "prisma db push",
-    "db:pull": "prisma db pull"
-  },
-  "dependencies": {
-    "@next-auth/prisma-adapter": "^1.0.7",
-    "@prisma/client": "^5.22.0",
-    "@radix-ui/react-slot": "^1.1.0",
-    "@sentry/nextjs": "^8.40.0",
-    "@types/nodemailer": "^6.4.17",
-    "bcrypt": "^5.1.1",
-    "class-variance-authority": "^0.7.0",
-    "clsx": "^2.1.1",
-    "lucide-react": "^0.460.0",
-    "next": "15.0.3",
-    "next-auth": "^4.24.10",
-    "next-themes": "^0.4.3",
-    "nodemailer": "^6.9.16",
-    "react": "19.0.0-rc-66855b96-20241106",
-    "react-dom": "19.0.0-rc-66855b96-20241106",
-    "stripe": "^17.4.0",
-    "tailwind-merge": "^2.5.4",
-    "tailwindcss-animate": "^1.0.7"
-  },
-  "devDependencies": {
-    "@types/bcryptjs": "^2.4.6",
-    "@types/node": "^20",
-    "@types/react": "^18",
-    "@types/react-dom": "^18",
-    "eslint": "^8",
-    "eslint-config-next": "15.0.3",
-    "postcss": "^8",
-    "tailwindcss": "^3.4.1",
-    "typescript": "^5"
-  }
+	"name": "@once-ui-system/nextjs-starter",
+	"version": "0.4.1",
+	"scripts": {
+		"dev": "next dev",
+		"export": "next export",
+		"build": "next build",
+		"start": "next start",
+		"lint": "next lint"
+	},
+	"dependencies": {
+		"@floating-ui/react-dom": "^2.1.1",
+		"@next-auth/prisma-adapter": "^1.0.7",
+		"@prisma/client": "^5.22.0",
+		"@sentry/nextjs": "^8.40.0",
+		"@types/nodemailer": "^6.4.17",
+		"bcrypt": "^5.1.1",
+		"classnames": "^2.5.1",
+		"compressorjs": "^1.2.1",
+		"lucide-react": "^0.461.0",
+		"next": "^14.2.4",
+		"next-auth": "^4.24.10",
+		"next-themes": "^0.4.3",
+		"nodemailer": "^6.9.16",
+		"postcss": "^8.4.39",
+		"postcss-preset-env": "^9.5.15",
+		"prisma": "^5.22.0",
+		"prismjs": "^1.29.0",
+		"react": "^18.3.1",
+		"react-dom": "^18.3.1",
+		"react-icons": "^5.2.1",
+		"sass": "^1.77.6",
+		"sharp": "^0.33.4",
+		"stripe": "^17.4.0",
+		"zod": "^3.23.8"
+	},
+	"devDependencies": {
+		"@csstools/postcss-global-data": "^2.1.1",
+		"@types/node": "^20",
+		"@types/react": "^18",
+		"@types/react-dom": "^18",
+		"postcss-custom-media": "^10.0.7",
+		"postcss-flexbugs-fixes": "^5.0.2",
+		"typescript": "^5"
+	}
 }

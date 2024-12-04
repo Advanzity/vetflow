@@ -32,7 +32,7 @@ export async function withTransaction<T>(
   const prisma = (await import('../prisma/client')).prisma;
   
   try {
-    const result = await prisma.$transaction(async (tx) => {
+    const result = await prisma.$transaction(async (_tx) => {
       return await operation();
     });
     return result;
