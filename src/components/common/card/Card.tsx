@@ -17,6 +17,7 @@ interface CardProps {
     error?: string;
     children: React.ReactNode;
     className?: string;
+    onClick?: () => void;
 }
 
 const Card: React.FC<CardProps> & {
@@ -32,16 +33,23 @@ const Card: React.FC<CardProps> & {
     loading,
     error,
     children,
-    className
+    className,
+    onClick,
 }) => {
     return (
         <Flex
             direction="column"
-            className={classNames(styles.card, styles[size], className)}
+            className={classNames(
+                styles.card, 
+                styles[size], 
+                className,
+                onClick && styles.clickable
+            )}
             background="surface"
             border="neutral-medium"
             borderStyle="solid-1"
-            radius="l">
+            radius="l"
+            onClick={onClick}>
             {(title || subtitle || actions) && (
                 <CardHeader
                     title={title}
@@ -55,9 +63,8 @@ const Card: React.FC<CardProps> & {
             {footer && <CardFooter>{footer}</CardFooter>}
         </Flex>
     );
-};
+}
 
-// Attach subcomponents
 Card.Header = CardHeader;
 Card.Body = CardBody;
 Card.Footer = CardFooter;

@@ -7,7 +7,6 @@ import { Background, Flex } from '@/once-ui/components';
 import { Inter } from 'next/font/google';
 import { Roboto_Mono } from 'next/font/google';
 import { Providers } from '@/components/providers/Providers';
-import { GridBackground } from '@/components/backgrounds/GridBackground';
 
 const primary = Inter({
     variable: '--font-primary',

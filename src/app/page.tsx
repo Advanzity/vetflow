@@ -9,7 +9,7 @@ export default function LandingPage() {
         {
             name: "Basic",
             price: 49,
-            interval: "month",
+            interval: "month" as "month",
             description: "Perfect for small veterinary practices",
             features: [
                 { feature: "Up to 500 patient records", included: true },
@@ -22,7 +22,7 @@ export default function LandingPage() {
         {
             name: "Professional",
             price: 99,
-            interval: "month",
+            interval: "month" as "month" | "year",
             description: "Ideal for growing clinics",
             isPopular: true,
             features: [
@@ -36,7 +36,7 @@ export default function LandingPage() {
         {
             name: "Enterprise",
             price: 199,
-            interval: "month",
+            interval: "month" as "month" | "year",
             description: "For large veterinary hospitals",
             features: [
                 { feature: "Unlimited everything", included: true },

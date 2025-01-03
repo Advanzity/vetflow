@@ -1,46 +1,63 @@
 'use client';
 
-import { Card, Flex, Grid } from '@/once-ui/components';
-import { DashboardHeader } from '@/components/dashboard/DashboardHeader';
-import { StatsGrid } from '@/components/dashboard/stats/StatsGrid';
-import { RevenueChart } from '@/components/dashboard/charts/RevenueChart';
-import { ActivityFeed } from '@/components/dashboard/activity/ActivityFeed';
-import { StaffSchedule } from '@/components/dashboard/staff/StaffSchedule';
-import { InventoryStatus } from '@/components/dashboard/inventory/InventoryStatus';
+import { useState } from 'react';
+import { useRouter } from 'next/navigation';
+import { Flex, Button, Card, Text, ToggleButton, Grid } from '@/once-ui/components';
 
-export default function DashboardPage() {
+interface Clinic {
+    id: string;
+    name: string;
+    address: string;
+}
+
+const mockOwnedClinics: Clinic[] = [
+    { id: '1', name: 'Happy Paws Veterinary Clinic', address: '123 Main St' },
+    { id: '2', name: 'Healthy Tails Vet', address: '456 Elm St' },
+];
+
+const mockAccessibleClinics: Clinic[] = [
+    { id: '3', name: 'Companion Care', address: '789 Oak St' },
+];
+
+const ClinicCard = ({ clinic }: { clinic: Clinic }) => {
+    const router = useRouter();
+
     return (
-        <Flex direction="column" gap="32">
-            <DashboardHeader />
-            
-            <StatsGrid />
+        <Card
+            onClick={() => router.push(`dashboard/clinic/${clinic.id}`)}
+        >
+            <Text variant="heading-strong-s">{clinic.name}</Text>
+            <Text variant="body-default-xs" onBackground="neutral-medium">
+                {clinic.address}
+            </Text>
+        </Card>
+    );
+};
 
-            <Grid
-                gap="24"
-                style={{
-                    gridTemplateColumns: '2fr 1fr',
-                }}>
-                {/* Main Content - Left Column */}
-                <Flex
-                    direction="column"
-                    gap="24">
-                    <RevenueChart />
-                    <Grid
-                        gap="24"
-                        style={{
-                            gridTemplateColumns: 'repeat(2, 1fr)',
-                        }}>
-                        <StaffSchedule />
-                        <InventoryStatus />
-                    </Grid>
-                </Flex>
+export default function ClinicPage() {
+    const [showOwned, setShowOwned] = useState(true);
 
-                {/* Sidebar - Right Column */}
-                <Flex
-                    direction="column"
-                    gap="24">
-                    <ActivityFeed />
-                </Flex>
+    const clinics = showOwned ? mockOwnedClinics : mockAccessibleClinics;
+
+    return (
+        <Flex direction="column" gap="16" padding="24">
+            <Flex justifyContent="center" gap="8">
+                <ToggleButton
+                    selected={showOwned}
+                    onClick={() => setShowOwned(true)}
+                    label="Owned Clinics"
+                />
+                <ToggleButton
+                    selected={!showOwned}
+                    onClick={() => setShowOwned(false)}
+                    label="Accessible Clinics"
+                />
+            </Flex>
+
+            <Grid gap="16" tabletColumns="2col" mobileColumns="1col">
+                {clinics.map((clinic) => (
+                    <ClinicCard key={clinic.id} clinic={clinic} />
+                ))}
             </Grid>
         </Flex>
     );

@@ -30,7 +30,8 @@ const schema = {
     type: 'Organization',
     name: 'VetFlow',
     description: 'Professional veterinary practice management system.',
-    email: 'support@vetflow.com'
+    email: 'support@vetflow.com',
+    logo: 'https://vetflow.com/logo.png',
 }
 
 const social = {

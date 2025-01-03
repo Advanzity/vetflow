@@ -50,7 +50,7 @@ export const PricingSection = ({ title, subtitle, tiers }: PricingSectionProps) 
                                 variant="heading-default-l"
                                 onBackground="neutral-medium"
                                 align="center"
-                                maxWidth={48}>
+                                style={{ maxWidth: '600px' }}>
                                 {subtitle}
                             </Text>
                         </RevealFx>
