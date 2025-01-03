@@ -1,1 +1,0 @@
-export { InventoryHistoryDialog } from './InventoryHistoryDialog';
