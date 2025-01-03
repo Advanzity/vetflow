@@ -1,0 +1,31 @@
+.card {
+    display: flex;
+    flex-direction: column;
+    gap: var(--static-space-16);
+    padding: var(--static-space-24);
+    border-radius: var(--radius-l);
+    background: var(--neutral-alpha-weak);
+    border: 1px solid var(--neutral-border-medium);
+    transition: var(--transition-micro-medium);
+
+    &:hover {
+        transform: translateY(-4px);
+        background: var(--neutral-alpha-medium);
+        border-color: var(--neutral-border-strong);
+    }
+}
+
+.iconWrapper {
+    width: var(--static-space-48);
+    height: var(--static-space-48);
+    border-radius: var(--radius-m);
+    background: var(--brand-alpha-weak);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: var(--transition-micro-medium);
+
+    .card:hover & {
+        background: var(--brand-alpha-medium);
+    }
+}

@@ -1,0 +1,20 @@
+@import './variables.module.scss';
+
+.header {
+    composes: variables;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: var(--header-height);
+    background: var(--surface-background);
+    border-bottom: 1px solid var(--neutral-border-medium);
+    z-index: 100;
+    backdrop-filter: var(--backdrop-filter);
+
+    .menuButton {
+        @media (max-width: 768px) {
+            display: none;
+        }
+    }
+}

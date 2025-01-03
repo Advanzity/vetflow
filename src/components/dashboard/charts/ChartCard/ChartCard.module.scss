@@ -1,0 +1,44 @@
+.chartContainer {
+    width: 100%;
+    height: 180px;
+    margin: 0 -16px;
+    padding: 0 16px;
+    position: relative;
+}
+
+.trend {
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+    padding: 4px 8px;
+    border-radius: var(--radius-s);
+    font-weight: 500;
+    font-size: 0.875rem;
+}
+
+.positive {
+    color: var(--success-on-background-medium);
+    background: var(--success-alpha-weak);
+}
+
+.negative {
+    color: var(--danger-on-background-medium);
+    background: var(--danger-alpha-weak);
+}
+
+.header {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.value {
+    font-size: 2rem;
+    font-weight: 600;
+    color: var(--neutral-on-background-strong);
+    line-height: 1;
+}
+
+.timeRange {
+    min-width: 120px;
+}

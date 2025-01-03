@@ -19,6 +19,12 @@ import {
 	HiInformationCircle,
 	HiExclamationCircle,
 	HiCheckCircle,
+	HiCalendarDays,
+	HiDocumentText,
+	HiBell,
+	HiChartBar,
+	HiUserGroup,
+	HiDevicePhoneMobile
 } from "react-icons/hi2";
 
 import {
@@ -47,4 +53,10 @@ export const iconLibrary: Record<string, IconType> = {
 	arrowUpRight: HiArrowUpRight,
 	minus: HiMiniMinus,
 	plus: HiMiniPlus,
+    calendar: HiCalendarDays,
+    fileText: HiDocumentText,
+    bell: HiBell,
+    barChart: HiChartBar,
+    users: HiUserGroup,
+    smartphone: HiDevicePhoneMobile
 };

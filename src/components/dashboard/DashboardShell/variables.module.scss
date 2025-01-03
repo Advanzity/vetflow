@@ -1,0 +1,12 @@
+.variables {
+    --header-height: 64px;
+    --sidebar-width: 240px;
+    --sidebar-width-collapsed: 64px;
+}
+
+/* Export variables for use in other modules */
+:export {
+    headerHeight: var(--header-height);
+    sidebarWidth: var(--sidebar-width);
+    sidebarWidthCollapsed: var(--sidebar-width-collapsed);
+}

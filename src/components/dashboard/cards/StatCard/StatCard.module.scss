@@ -1,0 +1,48 @@
+.iconWrapper {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: var(--static-space-48);
+    height: var(--static-space-48);
+    border-radius: var(--radius-l);
+    transition: var(--transition-micro-medium);
+
+    &.brand {
+        background: var(--brand-alpha-weak);
+    }
+
+    &.accent {
+        background: var(--accent-alpha-weak);
+    }
+
+    &.success {
+        background: var(--success-alpha-weak);
+    }
+
+    &.warning {
+        background: var(--warning-alpha-weak);
+    }
+}
+
+.chartWrapper {
+    position: relative;
+    margin: 0 -24px -24px;
+    padding: 0 24px;
+    overflow: hidden;
+    height: 60px;
+    
+    &::after {
+        content: '';
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        height: 24px;
+        background: linear-gradient(
+            to bottom,
+            transparent,
+            var(--surface-background)
+        );
+        pointer-events: none;
+    }
+}

@@ -1,47 +1,42 @@
 const baseURL = 'demo.once-ui.com'
 
-// default customization applied to the HTML in the main layout.tsx
+// Updated theme configuration for a professional medical dashboard
 const style = {
-    theme: 'dark',        // dark | light
-    neutral: 'gray',        // sand | gray | slate
-    brand: 'cyan',        // blue | indigo | violet | magenta | pink | red | orange | yellow | moss | green | emerald | aqua | cyan
-    accent: 'custom',      // blue | indigo | violet | magenta | pink | red | orange | yellow | moss | green | emerald | aqua | cyan
-    solid: 'color',    // color | contrast
-    solidStyle: 'flat',        // flat | plastic
-    border: 'conservative',     // rounded | playful | conservative
-    surface: 'translucent', // filled | translucent
-    transition: 'micro',         // all | micro | macro
-    scaling: '100',         // 90 | 95 | 100 | 105 | 110
+    theme: 'dark',        // Light theme for medical/clinical setting
+    neutral: 'gray',      // Slate for a professional, clean look
+    brand: 'cyan',         // Cyan for a medical/healthcare feel
+    accent: 'blue',        // Blue as complementary accent
+    solid: 'color',        // Color for solid elements
+    solidStyle: 'flat',    // Flat style for modern look
+    border: 'conservative', // Conservative borders for professionalism
+    surface: 'translucent', // Translucent surfaces for depth
+    transition: 'micro',    // Micro transitions for subtlety
+    scaling: '100',        // Default scaling
 }
 
-// default metadata
+// Rest of the config remains the same
 const meta = {
-    title: 'Once UI - Your Personalized Design System for Next.js',
-    description: 'An open-source design system and component library for Next.js that emphasizes easy styling and accessibility in UI development.'
+    title: 'VetFlow - Veterinary Practice Management',
+    description: 'Modern veterinary practice management system for streamlined patient care and clinic operations.'
 }
 
-
-// default open graph data
 const og = {
-    title: 'Once UI for Next.js',
-    description: 'We let designers code and developers design.',
+    title: 'VetFlow Dashboard',
+    description: 'Professional veterinary practice management system.',
     type: 'website'
 }
 
-// default schema data
 const schema = {
-    logo: 'meow',
     type: 'Organization',
-    name: 'One UI',
-    description: 'Once UI is an open-source design system and component library for Next.js.',
-    email: 'lorant@once-ui.com'
+    name: 'VetFlow',
+    description: 'Professional veterinary practice management system.',
+    email: 'support@vetflow.com'
 }
 
-// social links
 const social = {
-    twitter: 'https://www.twitter.com/_onceui',
-    linkedin: 'https://www.linkedin.com/company/once-ui/',
-    discord: 'https://discord.com/invite/5EyAQ4eNdS'
+    twitter: 'https://twitter.com/vetflow',
+    linkedin: 'https://linkedin.com/company/vetflow',
+    discord: 'https://discord.gg/vetflow'
 }
 
 export { baseURL, style, meta, og, schema, social };

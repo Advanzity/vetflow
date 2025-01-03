@@ -1,0 +1,23 @@
+.hero {
+    min-height: calc(100vh - var(--static-space-80));
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: var(--static-space-32);
+    position: relative;
+    overflow: hidden;
+}
+
+.content {
+    position: relative;
+    z-index: 1;
+    width: 100%;
+    max-width: var(--static-width-768);
+    margin: 0 auto;
+}
+
+.ctaContainer {
+    width: 100%;
+    max-width: var(--static-width-400);
+    margin: 0 auto;
+}

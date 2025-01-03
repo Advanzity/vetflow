@@ -1,0 +1,27 @@
+@import './variables.module.scss';
+
+.sidebar {
+    composes: variables;
+    position: fixed;
+    top: var(--header-height);
+    left: 0;
+    bottom: 0;
+    width: var(--sidebar-width);
+    background: var(--surface-background);
+    border-right: 1px solid var(--neutral-border-medium);
+    transition: width var(--transition-duration-micro-medium) var(--transition-eased);
+    z-index: 90;
+    backdrop-filter: var(--backdrop-filter);
+
+    &.collapsed {
+        width: var(--sidebar-width-collapsed);
+    }
+
+    @media (max-width: 768px) {
+        transform: translateX(-100%);
+        
+        &.collapsed {
+            transform: translateX(0);
+        }
+    }
+}

@@ -1,0 +1,30 @@
+.statsGrid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: var(--static-space-32);
+    width: 100%;
+    max-width: var(--static-width-768);
+    margin: 0 auto;
+
+    @media (max-width: 768px) {
+        grid-template-columns: 1fr;
+        gap: var(--static-space-24);
+        text-align: center;
+    }
+}
+
+.statItem {
+    display: flex;
+    flex-direction: column;
+    gap: var(--static-space-8);
+    align-items: center;
+    padding: var(--static-space-16);
+    border-radius: var(--radius-l);
+    background: var(--neutral-alpha-weak);
+    transition: var(--transition-micro-medium);
+
+    &:hover {
+        background: var(--neutral-alpha-medium);
+        transform: translateY(-4px);
+    }
+}

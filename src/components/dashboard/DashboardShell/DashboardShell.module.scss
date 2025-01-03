@@ -1,0 +1,31 @@
+@import './variables.module.scss';
+
+.shell {
+    min-height: 100vh;
+    background: var(--neutral-background-weak);
+    composes: variables;
+}
+
+.main {
+    flex: 1;
+    margin-left: var(--sidebar-width);
+    margin-top: var(--header-height);
+    transition: margin-left var(--transition-duration-micro-medium) var(--transition-eased);
+    overflow-y: auto;
+    height: calc(100vh - var(--header-height));
+
+    @media (max-width: 1024px) {
+        margin-left: var(--sidebar-width-collapsed);
+    }
+
+    @media (max-width: 768px) {
+        margin-left: 0;
+    }
+}
+
+.content {
+    padding: 24px;
+    max-width: 1600px;
+    margin: 0 auto;
+    width: 100%;
+}

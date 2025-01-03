@@ -1,0 +1,25 @@
+.trend {
+    padding: 4px 8px;
+    border-radius: var(--radius-s);
+    font-size: 0.875rem;
+    font-weight: 500;
+    transition: all var(--transition-duration-micro-medium) var(--transition-eased);
+}
+
+.positive {
+    color: var(--success-on-background-medium);
+    background: var(--success-alpha-weak);
+
+    &:hover {
+        background: var(--success-alpha-medium);
+    }
+}
+
+.negative {
+    color: var(--danger-on-background-medium);
+    background: var(--danger-alpha-weak);
+
+    &:hover {
+        background: var(--danger-alpha-medium);
+    }
+}

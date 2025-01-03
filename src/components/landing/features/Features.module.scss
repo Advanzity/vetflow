@@ -1,0 +1,24 @@
+.features {
+    width: 100%;
+    max-width: var(--static-width-1200);
+    margin: 0 auto;
+    padding: var(--static-space-64) var(--static-space-32);
+
+    @media (max-width: 768px) {
+        padding: var(--static-space-32) var(--static-space-16);
+    }
+}
+
+.grid {
+    display: grid;
+    gap: var(--static-space-24);
+    grid-template-columns: repeat(3, 1fr);
+
+    @media (max-width: 1024px) {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    @media (max-width: 768px) {
+        grid-template-columns: 1fr;
+    }
+}

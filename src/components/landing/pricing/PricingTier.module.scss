@@ -1,0 +1,8 @@
+.tier {
+    height: 100%;
+    transition: var(--transition-micro-medium);
+
+    &:hover {
+        transform: translateY(-8px);
+    }
+}

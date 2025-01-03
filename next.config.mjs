@@ -2,7 +2,7 @@
 const nextConfig = {
     // configure host for images
     images: {
-        domains: ['randomuser.me'],
+        domains: ['randomuser.me', 'images.unsplash.com'],
     },
 };
 

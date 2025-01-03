@@ -1,0 +1,29 @@
+.card {
+    transition: var(--transition-micro-medium);
+    box-shadow: var(--shadow-s);
+    backdrop-filter: var(--backdrop-filter);
+    background: var(--surface-background);
+
+    &:hover {
+        transform: translateY(-2px);
+        box-shadow: var(--shadow-m);
+    }
+
+    &:focus-within {
+        border-color: var(--brand-border-medium);
+    }
+}
+
+.header {
+    border-bottom: 1px solid var(--neutral-border-medium);
+}
+
+.body {
+    flex: 1;
+    padding: 16px;
+    overflow-y: auto;
+}
+
+.footer {
+    border-top: 1px solid var(--neutral-border-medium);
+}

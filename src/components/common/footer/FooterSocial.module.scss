@@ -1,0 +1,21 @@
+.social {
+    display: flex;
+    gap: var(--static-space-16);
+    align-items: center;
+
+    @media (max-width: 768px) {
+        justify-content: center;
+    }
+}
+
+.iconLink {
+    padding: var(--static-space-8);
+    border-radius: var(--radius-m);
+    transition: var(--transition-micro-medium);
+    background: var(--neutral-alpha-weak);
+
+    &:hover {
+        background: var(--neutral-alpha-medium);
+        transform: translateY(-2px);
+    }
+}
